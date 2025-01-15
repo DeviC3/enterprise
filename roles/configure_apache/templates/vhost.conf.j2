@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+    ServerName {{ item.domain_name }}
+    DocumentRoot {{ item.document_root }}
+    
+    <Directory {{ item.document_root }}>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog /var/log/{{ item.domain_name }}_error.log
+    CustomLog /var/log/{{ item.domain_name }}_access.log combined
+</VirtualHost>

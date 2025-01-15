@@ -1,0 +1,16 @@
+---
+- name: Deploy apache vhosts config restart httpd and show in output status
+  ansible.builtin.template:
+    src: vhost.conf.j2
+    dest: /etc/httpd/conf.d/{{ item.domain_name }}.conf
+  loop: "{{ vhosts }}"
+  notify: 
+    - Restart httpd
+
+- name: Check if apache is running
+  ansible.builtin.service_facts:
+  register: service_state
+
+- name: Display apache service status
+  ansible.builtin.debug:
+    msg: "Apache service is {{ service_state.ansible_facts.services['httpd.service'].state }}"

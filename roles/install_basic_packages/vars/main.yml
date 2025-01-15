@@ -1,0 +1,8 @@
+---
+basic_packages:
+  - vim
+  - git
+  - tmux
+  - curl
+  - httpd
+  - zabbix-agent

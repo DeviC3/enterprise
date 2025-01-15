@@ -1,0 +1,31 @@
+---
+- name: Ensure epel is installed
+  ansible.builtin.yum:
+    name: epel-release
+    state: present
+
+- name: Few other packages in our infra
+  ansible.builtin.yum:
+    name: "{{ basic_packages }}"
+    state: present
+
+- name: Enable and start zabbix agent
+  ansible.builtin.systemd:
+    name: zabbix-agent
+    state: started
+    enabled: yes
+
+- name: Copy zabbix client config
+  ansible.builtin.copy:
+    src: files/zabbix_client.conf
+    dest: /etc/zabbix/zabbix_agentd.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart zabbix-agent
+
+- name: Enable and restart httpd
+  ansible.builtin.systemd:
+    name: httpd
+    state: restarted
+    enabled: yes

@@ -1,0 +1,5 @@
+---
+- name: Basic OS configs
+  hosts: all
+  roles:
+    - os_internals

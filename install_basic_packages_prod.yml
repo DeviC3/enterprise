@@ -1,0 +1,5 @@
+---
+- name: Common packages install
+  hosts: all
+  roles:
+    - install_basic_packages

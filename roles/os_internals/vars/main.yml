@@ -1,0 +1,10 @@
+---
+users:
+  - name: user1
+    password: $y$j9T$VlvW13gXcQ4xbQj.KiGkJ0$3EEVdk66YyDswD7iP1qGtbPR/SoyyQTMfi7DXBQtgV8
+  - name: user2
+    password: $y$j9T$VlvW13gXcQ4xbQj.KiGkJ0$3EEVdk66YyDswD7iP1qGtbPR/SoyyQTMfi7DXBQtgV8
+  - name: techcyberark
+    password: $y$j9T$VlvW13gXcQ4xbQj.KiGkJ0$3EEVdk66YyDswD7iP1qGtbPR/SoyyQTMfi7DXBQtgV8
+  - name: techoracle
+    password: $y$j9T$VlvW13gXcQ4xbQj.KiGkJ0$3EEVdk66YyDswD7iP1qGtbPR/SoyyQTMfi7DXBQtgV8

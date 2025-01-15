@@ -1,0 +1,11 @@
+---
+- name: Config apache
+  hosts: all
+  roles:
+    - configure_apache
+  
+  handlers:
+    - name: Restart httpd
+      ansible.builtin.systemd:
+        name: httpd
+        state: restarted

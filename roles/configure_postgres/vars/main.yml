@@ -1,0 +1,14 @@
+---
+postgresql_conf:
+  shared_buffers: "1GB"
+  work_mem: "16MB"
+  maintenance_work_mem: "128MB"
+  effective_cache_size: "3GB"
+  max_parallel_workers_per_gather: 2
+  max_worker_processes: 4
+  max_parallel_workers: 4
+  wal_buffers: "16MB"
+  checkpoint_completion_target: 0.7
+  random_page_cost: 1.1
+  effective_io_concurrency: 2
+  default_statistics_target: 200

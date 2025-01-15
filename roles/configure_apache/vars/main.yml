@@ -1,0 +1,5 @@
+vhosts:
+  - domain_name: a.com
+    document_root: /home/user1/public_html
+  - domain_name: b.com
+    document_root: /home/user2/public_html

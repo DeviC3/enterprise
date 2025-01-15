@@ -1,0 +1,44 @@
+---
+- name: Install postgres repository
+  ansible.builtin.shell:
+    cmd: "dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm"
+
+- name: Disable the built-in postgres module
+  ansible.builtin.shell:
+    cmd: "dnf -qy module disable postgresql"
+
+- name: Install postgres 16 server
+  ansible.builtin.shell:
+    cmd: "dnf install -y postgresql16-server"
+
+- name: Initialize postgres 16 db
+  ansible.builtin.shell:
+    cmd: "/usr/pgsql-16/bin/postgresql-16-setup initdb"
+
+- name: Enable and start postgres service
+  ansible.builtin.service:
+    name: "postgresql-16"
+    state: started
+    enabled: yes
+
+- name: Update default config
+  ansible.builtin.lineinfile:
+    path: /var/lib/pgsql/16/data/postgresql.conf
+    regexp: '^#?{{ item.key }}'
+    line: "{{ item.key }} = {{ item.value }}"
+    state: present
+  loop: "{{ postgresql_conf | dict2items }}"
+
+- name: Restart postgres service
+  ansible.builtin.service:
+    name: postgresql-16
+    state: restarted
+
+- name: Check if it is running
+  ansible.builtin.service_facts:
+  register: service_state
+
+- name: Display service status
+  ansible.builtin.debug:
+    msg: "PostgreSQL 16 service is {{ service_state.ansible_facts.services['postgresql-16.service'].state }}"
+

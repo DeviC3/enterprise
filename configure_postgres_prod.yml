@@ -1,0 +1,5 @@
+---
+- name: Basic postgres config used in our infra
+  hosts: all
+  roles:
+    - configure_postgres
